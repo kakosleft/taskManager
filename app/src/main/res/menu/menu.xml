@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/main_menu_home"
+        android:title="@string/all"
+        app:exb_color="@color/blue" />
+
+    <item
+        android:id="@+id/main_menu_shopping_cart"
+        android:title="@string/in_process"
+        app:exb_color="@color/red" />
+
+    <item
+        android:id="@+id/main_menu_settings"
+        android:title="@string/done"
+        app:exb_color="@color/green" />
+</menu>
