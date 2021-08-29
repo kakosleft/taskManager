@@ -29,10 +29,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
+
+
         setBottomBar()
         floatingButton = findViewById(R.id.floatingActionButton)
 
+        floatingButton.visibility = View.VISIBLE
+        bottomBar.visibility = View.VISIBLE
         floatingButton.setOnClickListener {
+            floatingButton.visibility = View.GONE
+            bottomBar.visibility = View.GONE
             val fragmentContainerView =
                 findViewById<FragmentContainerView>(R.id.main_fragments_view)
             fragmentContainerView.removeAllViews()

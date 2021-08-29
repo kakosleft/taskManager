@@ -34,8 +34,6 @@ class MainFragment : Fragment(), TaskRecyclerAllAdapter.RowClickListener {
             layoutManager = GridLayoutManager(activity,1)
             recyclerViewAllAdapter = TaskRecyclerAllAdapter(this@MainFragment)
             adapter = recyclerViewAllAdapter
-            val divider = DividerItemDecoration(context, StaggeredGridLayoutManager.VERTICAL)
-            addItemDecoration(divider)
         }
 
         viewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)

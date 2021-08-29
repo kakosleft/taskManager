@@ -38,8 +38,6 @@ class CompletedTasksFragment : Fragment(),
             layoutManager = LinearLayoutManager(activity)
             recyclerViewCompletedAdapter = TaskRecyclerCompletedAdapter(this@CompletedTasksFragment)
             adapter = recyclerViewCompletedAdapter
-            val divider = DividerItemDecoration(context, StaggeredGridLayoutManager.VERTICAL)
-            addItemDecoration(divider)
         }
 
         viewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)

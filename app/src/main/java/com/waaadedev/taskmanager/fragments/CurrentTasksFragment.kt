@@ -38,8 +38,6 @@ class CurrentTasksFragment : Fragment(), TaskRecyclerCurrentAdapter.CurrentItemO
             layoutManager = LinearLayoutManager(activity)
             recyclerViewCurrentAdapter = TaskRecyclerCurrentAdapter(this@CurrentTasksFragment)
             adapter = recyclerViewCurrentAdapter
-            val divider = DividerItemDecoration(context, StaggeredGridLayoutManager.VERTICAL)
-            addItemDecoration(divider)
         }
 
         viewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
