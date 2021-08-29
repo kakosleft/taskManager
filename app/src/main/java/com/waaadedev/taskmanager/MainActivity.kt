@@ -33,13 +33,16 @@ class MainActivity : AppCompatActivity() {
         floatingButton = findViewById(R.id.floatingActionButton)
 
         floatingButton.setOnClickListener {
+            val fragmentContainerView =
+                findViewById<FragmentContainerView>(R.id.main_fragments_view)
+            fragmentContainerView.removeAllViews()
             supportFragmentManager.beginTransaction()
-                .add(R.id.main_fragments_view,NewTaskFragment())
+                .add(R.id.main_fragments_view, NewTaskFragment())
                 .commit()
         }
 
         supportFragmentManager.beginTransaction()
-            .add(R.id.main_fragments_view,MainFragment())
+            .add(R.id.main_fragments_view, MainFragment())
             .commit()
     }
 
@@ -82,15 +85,15 @@ class MainActivity : AppCompatActivity() {
             fragmentContainerView.removeAllViews()
             if (menuItem.id == R.id.all_tasks) {
                 supportFragmentManager.beginTransaction()
-                    .add(R.id.main_fragments_view,MainFragment())
+                    .add(R.id.main_fragments_view, MainFragment())
                     .commit()
             } else if (menuItem.id == R.id.current_tasks) {
                 supportFragmentManager.beginTransaction()
-                    .add(R.id.main_fragments_view,CurrentTasksFragment())
+                    .add(R.id.main_fragments_view, CurrentTasksFragment())
                     .commit()
             } else {
                 supportFragmentManager.beginTransaction()
-                    .add(R.id.main_fragments_view,CompletedTasksFragment())
+                    .add(R.id.main_fragments_view, CompletedTasksFragment())
                     .commit()
             }
         }
