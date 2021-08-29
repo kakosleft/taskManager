@@ -5,10 +5,10 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Task(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     var id: Int,
     var description: String,
     var text: String,
-    var date: String,
+    var date: Long,
     var isDone: Boolean
 )
