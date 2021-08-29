@@ -1,5 +1,6 @@
 package com.waaadedev.taskmanager.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,15 +9,17 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentContainerView
 import androidx.lifecycle.ViewModelProviders
 import com.waaadedev.taskmanager.DialogsDataViewModel
+import com.waaadedev.taskmanager.MainActivity
 import com.waaadedev.taskmanager.MainActivityViewModel
 import com.waaadedev.taskmanager.R
 import com.waaadedev.taskmanager.data.Task
 import com.waaadedev.taskmanager.fragments.dialogs.DatePickerFragment
 import com.waaadedev.taskmanager.fragments.dialogs.TimePickerFragment
-import java.lang.Exception
 import java.util.*
+
 
 class NewTaskFragment : Fragment() {
 
@@ -63,10 +66,8 @@ class NewTaskFragment : Fragment() {
 
                 viewModel.insertTask(newTask)
 
-                val transaction = activity?.supportFragmentManager?.beginTransaction()
-                transaction?.replace(R.id.main_fragments_view, MainFragment())
-                transaction?.disallowAddToBackStack()
-                transaction?.commit()
+                val intent = Intent(requireActivity(), MainActivity::class.java)
+                startActivity(intent)
 
             }catch (e: Exception){
                 Log.i("__",e.toString())

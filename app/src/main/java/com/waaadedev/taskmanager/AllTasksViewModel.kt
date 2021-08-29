@@ -5,23 +5,24 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.waaadedev.taskmanager.data.AppDatabase
 import com.waaadedev.taskmanager.data.Task
+import com.waaadedev.taskmanager.fragments.AllTasksFragment
 
-class MainActivityViewModel(app: Application): AndroidViewModel(app) {
-    var allTasks: MutableLiveData<List<Task>> = MutableLiveData()
+class AllTasksViewModel(app: Application): AndroidViewModel(app) {
+    var currentTasks: MutableLiveData<List<Task>> = MutableLiveData()
+    var doneTasks: MutableLiveData<List<Task>> = MutableLiveData()
 
     init {
         getAllTasks()
     }
 
     private fun getAllTasks() {
-        val tasksDao = AppDatabase.getAppDatabase((getApplication()))?.taskDao()
-        val list = tasksDao?.getAllTasks()
-        allTasks.postValue(list)
+        currentTasks.postValue(AllTasksFragment.t.currentTasks)
+        doneTasks.postValue(AllTasksFragment.t.doneTasks)
     }
-
-    fun getAllTasksObservers(): MutableLiveData<List<Task>> {
-        return allTasks
-    }
+//
+//    fun getAllTasksObservers(): MutableLiveData<List<Task>> {
+//        return allTasks
+//    }
 
     fun insertTask(task: Task){
         val taskDao = AppDatabase.getAppDatabase((getApplication()))?.taskDao()

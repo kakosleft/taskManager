@@ -7,11 +7,9 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentContainerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.waaadedev.taskmanager.adapters.TaskRecyclerAllAdapter
-import com.waaadedev.taskmanager.adapters.TaskRecyclerCurrentAdapter
 import com.waaadedev.taskmanager.fragments.CompletedTasksFragment
 import com.waaadedev.taskmanager.fragments.CurrentTasksFragment
-import com.waaadedev.taskmanager.fragments.MainFragment
+import com.waaadedev.taskmanager.fragments.AllTasksFragment
 import com.waaadedev.taskmanager.fragments.NewTaskFragment
 import github.com.st235.lib_expandablebottombar.ExpandableBottomBar
 import github.com.st235.lib_expandablebottombar.MenuItemDescriptor
@@ -27,7 +25,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
 
 
@@ -47,8 +44,15 @@ class MainActivity : AppCompatActivity() {
                 .commit()
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val fragmentContainerView =
+            findViewById<FragmentContainerView>(R.id.main_fragments_view)
+        fragmentContainerView.removeAllViews()
         supportFragmentManager.beginTransaction()
-            .add(R.id.main_fragments_view, MainFragment())
+            .add(R.id.main_fragments_view, AllTasksFragment())
             .commit()
     }
 
@@ -90,8 +94,11 @@ class MainActivity : AppCompatActivity() {
                 findViewById<FragmentContainerView>(R.id.main_fragments_view)
             fragmentContainerView.removeAllViews()
             if (menuItem.id == R.id.all_tasks) {
+                val fragmentContainerView =
+                    findViewById<FragmentContainerView>(R.id.main_fragments_view)
+                fragmentContainerView.removeAllViews()
                 supportFragmentManager.beginTransaction()
-                    .add(R.id.main_fragments_view, MainFragment())
+                    .add(R.id.main_fragments_view, AllTasksFragment())
                     .commit()
             } else if (menuItem.id == R.id.current_tasks) {
                 supportFragmentManager.beginTransaction()
