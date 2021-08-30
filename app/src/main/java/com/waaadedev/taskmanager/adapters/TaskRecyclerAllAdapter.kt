@@ -3,18 +3,14 @@ package com.waaadedev.taskmanager.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.customview.customView
 import com.waaadedev.taskmanager.viewModel.MainActivityViewModel
 import com.waaadedev.taskmanager.R
 import com.waaadedev.taskmanager.data.Task
 import com.waaadedev.taskmanager.data.TasksParrent
 import com.waaadedev.taskmanager.util.ItemsOnClick
-import kotlinx.android.synthetic.main.dialog_delete_task.*
 import kotlinx.android.synthetic.main.item_group.view.*
 
 class TaskRecyclerAllAdapter(
@@ -46,9 +42,9 @@ class TaskRecyclerAllAdapter(
             itemsGroupRecyclerViewAdapter.setListData(items[position].tasks)
 
             if (position == 0) {
-                holder.itemView.setBackgroundResource(R.drawable.items_background_is_done)
+                holder.itemView.setBackgroundResource(R.drawable.group_background_is_done)
             }else{
-                holder.itemView.setBackgroundResource(R.drawable.items_background_is_current)
+                holder.itemView.setBackgroundResource(R.drawable.group_background_is_current)
                 val param = holder.itemView.layoutParams as ViewGroup.MarginLayoutParams
                 val newParam = param
                 newParam.setMargins(param.leftMargin,param.topMargin,param.rightMargin, 400)

@@ -3,8 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/group_background_is_current.xml" value="0.197" />
+        <entry key="app/src/main/res/drawable-v24/group_background_is_done.xml" value="0.197" />
         <entry key="app/src/main/res/drawable-v24/items_background.xml" value="0.201" />
         <entry key="app/src/main/res/drawable-v24/items_background_is_current.xml" value="0.211" />
+        <entry key="app/src/main/res/drawable/buttons_background.xml" value="0.197" />
+        <entry key="app/src/main/res/drawable/items_background.xml" value="0.211" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.36041666666666666" />
         <entry key="app/src/main/res/layout/add_new_task_dialog.xml" value="0.36041666666666666" />
         <entry key="app/src/main/res/layout/date_dialog.xml" value="0.36041666666666666" />
