@@ -71,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:background="@drawable/items_background"
+            android:background="@drawable/items_background_is_done"
             android:text="Select date"
             android:textAllCaps="false"
             android:textColor="@color/white" />
@@ -88,7 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:background="@drawable/items_background"
+            android:background="@drawable/items_background_is_done"
             android:text="select time"
             android:textAllCaps="false"
             android:textColor="@color/white" />
@@ -101,7 +101,7 @@
             android:layout_gravity="bottom"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="60dp"
-            android:background="@drawable/items_background"
+            android:background="@drawable/items_background_is_done"
             android:text="Create"
             android:textAllCaps="false"
             android:textColor="@color/white"

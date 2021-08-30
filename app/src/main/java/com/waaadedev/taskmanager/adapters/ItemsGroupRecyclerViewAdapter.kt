@@ -1,5 +1,6 @@
 package com.waaadedev.taskmanager.adapters
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -51,9 +52,17 @@ class ItemsGroupRecyclerViewAdapter(private val listener: RowClickListener) :
                 listener.onItemClickListener(task)
                 true
             }
-
+            setColor(task)
             itemView.setOnClickListener {
                 listener.onTaskCompliteListener(task)
+            }
+        }
+
+        fun setColor(task: Task) {
+            if (task.isDone) {
+                title.setTextColor(Color.parseColor("#ffffff"))
+                time.setTextColor(Color.parseColor("#ffffff"))
+                date.setTextColor(Color.parseColor("#ffffff"))
             }
         }
     }

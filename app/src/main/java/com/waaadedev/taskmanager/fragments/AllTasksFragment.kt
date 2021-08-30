@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.*
 import com.waaadedev.taskmanager.viewModel.MainActivityViewModel
@@ -13,12 +14,16 @@ import com.waaadedev.taskmanager.R
 import com.waaadedev.taskmanager.adapters.TaskRecyclerAllAdapter
 import com.waaadedev.taskmanager.data.Task
 import com.waaadedev.taskmanager.data.TasksParrent
+import com.waaadedev.taskmanager.util.DateConverter
 
 class AllTasksFragment : Fragment(){
 
     private lateinit var recyclerView: RecyclerView
     lateinit var recyclerViewAllAdapter: TaskRecyclerAllAdapter
     lateinit var viewModel: MainActivityViewModel
+
+    lateinit var dayOfWeek: TextView
+    lateinit var dateTime: TextView
 
 
     override fun onCreateView(
@@ -27,6 +32,11 @@ class AllTasksFragment : Fragment(){
 
         val view = inflater.inflate(R.layout.fragment_all_tasks, container, false)
 
+        dayOfWeek = view.findViewById(R.id.day_of_week)
+        dateTime = view.findViewById(R.id.date_main)
+
+        dayOfWeek.text = DateConverter().getCurrentDay()
+        dateTime.text = DateConverter().getDate()
 
         recyclerView = view.findViewById(R.id.all_tasks_recycler_view)
 
@@ -39,7 +49,6 @@ class AllTasksFragment : Fragment(){
         }
 
         viewModel.getAllTasksObservers().observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-            Log.i("____#_____",preparationData(it).toString())
             recyclerViewAllAdapter.setListData(preparationData(it))
             recyclerViewAllAdapter.notifyDataSetChanged()
         })
@@ -58,17 +67,9 @@ class AllTasksFragment : Fragment(){
                 currentTasks.add(it)
             }
         }
-        parrent.add(TasksParrent(currentTasks))
         parrent.add(TasksParrent(doneTasks))
+        parrent.add(TasksParrent(currentTasks))
         return parrent
     }
-
-    companion object t{
-        val currentTasks = ArrayList<Task>()
-        val doneTasks = ArrayList<Task>()
-    }
-
-
-
 
 }

@@ -1,12 +1,10 @@
 package com.waaadedev.taskmanager.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
@@ -28,10 +26,6 @@ class TaskRecyclerAllAdapter(
     var items = ArrayList<TasksParrent>()
 
     fun setListData(data: ArrayList<TasksParrent>) {
-        Log.i("/////////////", "$data")
-        Log.i("/////////////", "${data.size}")
-        Log.i("/////////////", "${data[0].tasks.size}")
-        Log.i("/////////////", "${data[1].tasks.size}")
         this.items = data
     }
 
@@ -52,18 +46,21 @@ class TaskRecyclerAllAdapter(
             }
             itemsGroupRecyclerViewAdapter.setListData(items[position].tasks)
 
-            if (position == 1) {
-                holder.itemView.setBackgroundResource(R.drawable.items_background)
+            if (position == 0) {
+                holder.itemView.setBackgroundResource(R.drawable.items_background_is_done)
+            }else{
+                holder.itemView.setBackgroundResource(R.drawable.items_background_is_current)
+                val param = holder.itemView.layoutParams as ViewGroup.MarginLayoutParams
+                val newParam = param
+                newParam.setMargins(param.leftMargin,param.topMargin,param.rightMargin, 400)
+                holder.itemView.layoutParams = newParam
             }
         }
     }
 
     override fun getItemCount(): Int = items.size
 
-
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-    }
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {}
 
     override fun onItemClickListener(task: Task) {
         val dialog = MaterialDialog(activity!!)
@@ -81,26 +78,9 @@ class TaskRecyclerAllAdapter(
         }
         dialog.show()
     }
-    private fun preparationData(it: List<Task>?): ArrayList<TasksParrent> {
-        val doneTasks = ArrayList<Task>()
-        val currentTasks = ArrayList<Task>()
-        val parrent = ArrayList<TasksParrent>()
-        it?.forEach {
-            if (it.isDone){
-                doneTasks.add(it)
-            }else{
-                currentTasks.add(it)
-            }
-        }
-        parrent.add(TasksParrent(currentTasks))
-        parrent.add(TasksParrent(doneTasks))
-        return parrent
-    }
 
     override fun onTaskCompliteListener(task: Task) {
-        Log.i("----------", task.toString())
         task.isDone = !task.isDone
-        Log.i("----------", task.toString())
         viewModel.updateTask(task)
         itemsGroupRecyclerViewAdapter.notifyDataSetChanged()
     }

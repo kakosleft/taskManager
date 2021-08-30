@@ -20,6 +20,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Today\nSchedule"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.055"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date_main" />
+
+    <TextView
         android:id="@+id/date_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,7 +39,7 @@
         android:text="03 june 2021"
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintHorizontal_bias="0.052"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/day_of_week" />
 
@@ -42,14 +54,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:paddingHorizontal="20dp"
         android:id="@+id/all_tasks_recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date_main" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 
 

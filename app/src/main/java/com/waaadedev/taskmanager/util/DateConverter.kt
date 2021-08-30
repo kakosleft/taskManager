@@ -14,4 +14,17 @@ class DateConverter() {
         val formater = SimpleDateFormat("dd:MM:yyyy")
         return formater.format(Date(date))
     }
+
+    fun getCurrentDay(): String{
+        val calendar = Calendar.getInstance()
+        val date = calendar.time
+        return SimpleDateFormat("EEEE", Locale.ENGLISH).format(date.time)
+    }
+
+    fun getDate(): String{
+        val calendar = Calendar.getInstance()
+        val date = calendar.time
+        return SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH).format(date.time)
+    }
+
 }
