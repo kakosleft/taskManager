@@ -30,7 +30,7 @@ class NewTaskFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        blockOnBackPresed()
+        onBackPresed()
         val view = inflater.inflate(R.layout.fragment_new_task, container, false)
         view.button_back.setOnClickListener {
             goBack()
@@ -84,11 +84,13 @@ class NewTaskFragment : Fragment() {
         return view
     }
 
-    private fun blockOnBackPresed() {
+    private fun onBackPresed() {
         requireActivity()
             .onBackPressedDispatcher
             .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {}
+                override fun handleOnBackPressed() {
+                    goBack()
+                }
             })
     }
 
