@@ -13,6 +13,7 @@ import com.waaadedev.taskmanager.viewModel.MainActivityViewModel
 import com.waaadedev.taskmanager.R
 import com.waaadedev.taskmanager.data.Task
 import com.waaadedev.taskmanager.data.TasksParrent
+import com.waaadedev.taskmanager.util.ItemsOnClick
 import kotlinx.android.synthetic.main.dialog_delete_task.*
 import kotlinx.android.synthetic.main.item_group.view.*
 
@@ -60,24 +61,12 @@ class TaskRecyclerAllAdapter(
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {}
 
-    override fun onItemClickListener(task: Task) {
-        val dialog = MaterialDialog(activity!!)
-            .noAutoDismiss()
-            .customView(R.layout.dialog_delete_task)
-
-        dialog.delete_task_dialog_no.setOnClickListener { dialog.cancel() }
-        dialog.delete_task_dialog_yes.setOnClickListener {
-            viewModel.deleteTask(task)
-            dialog.cancel()
-            itemsGroupRecyclerViewAdapter.notifyDataSetChanged()
-        }
-        dialog.show()
+    override fun onItemLongClickListener(task: Task) {
+        ItemsOnClick().onItemLongClick(task, activity, viewModel)
     }
 
     override fun onTaskCompliteListener(task: Task) {
-        task.isDone = !task.isDone
-        viewModel.updateTask(task)
-        itemsGroupRecyclerViewAdapter.notifyDataSetChanged()
+        ItemsOnClick().onTaskComplite(task, viewModel)
     }
 
 }

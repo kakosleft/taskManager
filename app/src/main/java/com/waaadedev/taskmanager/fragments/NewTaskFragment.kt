@@ -3,12 +3,14 @@ package com.waaadedev.taskmanager.fragments
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.waaadedev.taskmanager.viewModel.DialogsDataViewModel
@@ -47,7 +49,6 @@ class NewTaskFragment : Fragment() {
                 var newTask= Task(
                     description = view.task_title_edit_text.text.toString(),
                     date = taskTime.timeInMillis,
-                    text = "234234",
                     id = 0,
                     isDone = false
                 )
@@ -55,6 +56,9 @@ class NewTaskFragment : Fragment() {
                 viewModel.insertTask(newTask)
                 goBack()
             }catch (e: Exception){
+                val toast = Toast.makeText(context,"You must select date and time",Toast.LENGTH_LONG)
+                toast.setGravity(Gravity.TOP,0,0)
+                toast.show()
                 Log.i("__",e.toString())
             }
         }

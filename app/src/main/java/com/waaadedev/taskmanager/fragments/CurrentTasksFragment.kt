@@ -1,21 +1,17 @@
 package com.waaadedev.taskmanager.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.customview.customView
 import com.waaadedev.taskmanager.viewModel.MainActivityViewModel
 import com.waaadedev.taskmanager.R
 import com.waaadedev.taskmanager.adapters.TaskRecyclerCurrentAdapter
 import com.waaadedev.taskmanager.data.Task
+import com.waaadedev.taskmanager.util.ItemsOnClick
 import kotlinx.android.synthetic.main.fragment_current_tasks.view.*
 
 class CurrentTasksFragment : Fragment(), TaskRecyclerCurrentAdapter.CurrentItemOnClickListener {
@@ -44,24 +40,11 @@ class CurrentTasksFragment : Fragment(), TaskRecyclerCurrentAdapter.CurrentItemO
         return view
     }
 
-    override fun onItemClickListener(task: Task) {
-        val dialog = MaterialDialog(requireActivity())
-            .noAutoDismiss()
-            .customView(R.layout.dialog_delete_task)
-
-        val buttonYes = dialog.findViewById<Button>(R.id.delete_task_dialog_yes)
-        val buttonNo = dialog.findViewById<Button>(R.id.delete_task_dialog_no)
-
-        buttonNo.setOnClickListener { dialog.cancel() }
-        buttonYes.setOnClickListener {
-            viewModel.deleteTask(task)
-            dialog.cancel()
-        }
-        dialog.show()
+    override fun onItemLongClickListener(task: Task) {
+        ItemsOnClick().onItemLongClick(task, requireActivity(), viewModel)
     }
 
     override fun onTaskCompliteListener(task: Task) {
-        task.isDone = !task.isDone
-        viewModel.updateTask(task)
+        ItemsOnClick().onTaskComplite(task, viewModel)
     }
 }

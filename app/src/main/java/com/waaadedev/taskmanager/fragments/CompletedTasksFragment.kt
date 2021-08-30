@@ -16,6 +16,7 @@ import com.waaadedev.taskmanager.viewModel.MainActivityViewModel
 import com.waaadedev.taskmanager.R
 import com.waaadedev.taskmanager.adapters.TaskRecyclerCompletedAdapter
 import com.waaadedev.taskmanager.data.Task
+import com.waaadedev.taskmanager.util.ItemsOnClick
 import kotlinx.android.synthetic.main.fragment_completed_tasks.view.*
 
 class CompletedTasksFragment : Fragment(),
@@ -43,24 +44,11 @@ class CompletedTasksFragment : Fragment(),
         return view
     }
 
-    override fun onItemClickListener(task: Task) {
-        val dialog = MaterialDialog(requireActivity())
-            .noAutoDismiss()
-            .customView(R.layout.dialog_delete_task)
-
-        val buttonYes = dialog.findViewById<Button>(R.id.delete_task_dialog_yes)
-        val buttonNo = dialog.findViewById<Button>(R.id.delete_task_dialog_no)
-
-        buttonNo.setOnClickListener { dialog.cancel() }
-        buttonYes.setOnClickListener {
-            viewModel.deleteTask(task)
-            dialog.cancel()
-        }
-        dialog.show()
+    override fun onItemLongClickListener(task: Task) {
+        ItemsOnClick().onItemLongClick(task, requireActivity(), viewModel)
     }
 
     override fun onTaskCompliteListener(task: Task) {
-        task.isDone = !task.isDone
-        viewModel.updateTask(task)
+        ItemsOnClick().onTaskComplite(task, viewModel)
     }
 }

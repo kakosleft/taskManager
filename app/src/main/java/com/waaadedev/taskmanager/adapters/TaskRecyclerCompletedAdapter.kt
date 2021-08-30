@@ -48,7 +48,7 @@ class TaskRecyclerCompletedAdapter(private val listener: ComplitedItemOnClickLis
             itemView.item_task_check_box.isChecked = task.isDone
 
             itemView.setOnLongClickListener {
-                listener.onItemClickListener(task)
+                listener.onItemLongClickListener(task)
                 true
             }
 
@@ -59,7 +59,7 @@ class TaskRecyclerCompletedAdapter(private val listener: ComplitedItemOnClickLis
     }
 
     interface ComplitedItemOnClickListener {
-        fun onItemClickListener(task: Task)
+        fun onItemLongClickListener(task: Task)
         fun onTaskCompliteListener(task: Task)
     }
 

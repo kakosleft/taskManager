@@ -43,7 +43,7 @@ class ItemsGroupRecyclerViewAdapter(private val listener: RowClickListener) :
             itemView.item_task_check_box.isChecked = task.isDone
 
             itemView.setOnLongClickListener {
-                listener.onItemClickListener(task)
+                listener.onItemLongClickListener(task)
                 true
             }
             setColor(task)
@@ -62,7 +62,7 @@ class ItemsGroupRecyclerViewAdapter(private val listener: RowClickListener) :
     }
 
     interface RowClickListener {
-        fun onItemClickListener(task: Task)
+        fun onItemLongClickListener(task: Task)
         fun onTaskCompliteListener(task: Task)
     }
 }
