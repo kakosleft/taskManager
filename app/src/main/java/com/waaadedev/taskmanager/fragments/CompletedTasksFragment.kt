@@ -16,22 +16,19 @@ import com.waaadedev.taskmanager.viewModel.MainActivityViewModel
 import com.waaadedev.taskmanager.R
 import com.waaadedev.taskmanager.adapters.TaskRecyclerCompletedAdapter
 import com.waaadedev.taskmanager.data.Task
+import kotlinx.android.synthetic.main.fragment_completed_tasks.view.*
 
 class CompletedTasksFragment : Fragment(),
     TaskRecyclerCompletedAdapter.ComplitedItemOnClickListener {
-    private lateinit var recyclerView: RecyclerView
     lateinit var recyclerViewCompletedAdapter: TaskRecyclerCompletedAdapter
     lateinit var viewModel: MainActivityViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
         val view = inflater.inflate(R.layout.fragment_completed_tasks, container, false)
 
-        recyclerView = view.findViewById(R.id.completed_tasks_recycler_view)
-
-        recyclerView.apply {
+        view.completed_tasks_recycler_view.apply {
             layoutManager = LinearLayoutManager(activity)
             recyclerViewCompletedAdapter = TaskRecyclerCompletedAdapter(this@CompletedTasksFragment)
             adapter = recyclerViewCompletedAdapter
@@ -64,7 +61,6 @@ class CompletedTasksFragment : Fragment(),
 
     override fun onTaskCompliteListener(task: Task) {
         task.isDone = !task.isDone
-        Log.i("----------", task.toString())
         viewModel.updateTask(task)
     }
 }

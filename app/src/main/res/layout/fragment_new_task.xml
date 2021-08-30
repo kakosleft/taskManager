@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:background="@color/white"
-            android:src="@drawable/house" />
+            android:src="@drawable/icon_back" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:background="@drawable/items_background_is_done"
-            android:text="select time"
+            android:text="Select time"
             android:textAllCaps="false"
             android:textColor="@color/white" />
 

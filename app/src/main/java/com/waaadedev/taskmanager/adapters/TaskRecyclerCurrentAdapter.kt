@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.waaadedev.taskmanager.R
 import com.waaadedev.taskmanager.data.Task
 import com.waaadedev.taskmanager.util.DateConverter
+import kotlinx.android.synthetic.main.item_task.view.*
 
 class TaskRecyclerCurrentAdapter(private val listener: CurrentItemOnClickListener) :
     RecyclerView.Adapter<TaskRecyclerCurrentAdapter.ViewHolder>() {
@@ -25,10 +26,8 @@ class TaskRecyclerCurrentAdapter(private val listener: CurrentItemOnClickListene
         this.items = newList
     }
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): TaskRecyclerCurrentAdapter.ViewHolder {
+    override fun onCreateViewHolder( parent: ViewGroup, viewType: Int):
+            TaskRecyclerCurrentAdapter.ViewHolder {
         var itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.item_task, parent, false)
         return ViewHolder(itemView, listener)
@@ -43,16 +42,12 @@ class TaskRecyclerCurrentAdapter(private val listener: CurrentItemOnClickListene
 
     inner class ViewHolder(itemView: View, val listener: CurrentItemOnClickListener) :
         RecyclerView.ViewHolder(itemView) {
-        val title = itemView.findViewById<TextView>(R.id.item_task_title)
-        val time = itemView.findViewById<TextView>(R.id.item_task_time)
-        val date = itemView.findViewById<TextView>(R.id.item_task_date)
-        val isDone = itemView.findViewById<CheckBox>(R.id.item_task_check_box)
 
         fun bind(task: Task) {
-            title.text = task.description
-            time.text = DateConverter().getTime(task.date)
-            date.text = DateConverter().getDate(task.date)
-            isDone.isChecked = task.isDone
+            itemView.item_task_title.text = task.description
+            itemView.item_task_time.text = DateConverter().getTime(task.date)
+            itemView.item_task_date.text = DateConverter().getDate(task.date)
+            itemView.item_task_check_box.isChecked = task.isDone
 
             itemView.setOnLongClickListener {
                 listener.onItemClickListener(task)

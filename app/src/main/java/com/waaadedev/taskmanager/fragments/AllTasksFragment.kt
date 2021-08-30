@@ -15,34 +15,22 @@ import com.waaadedev.taskmanager.adapters.TaskRecyclerAllAdapter
 import com.waaadedev.taskmanager.data.Task
 import com.waaadedev.taskmanager.data.TasksParrent
 import com.waaadedev.taskmanager.util.DateConverter
+import kotlinx.android.synthetic.main.fragment_all_tasks.view.*
 
 class AllTasksFragment : Fragment(){
 
-    private lateinit var recyclerView: RecyclerView
     lateinit var recyclerViewAllAdapter: TaskRecyclerAllAdapter
     lateinit var viewModel: MainActivityViewModel
 
-    lateinit var dayOfWeek: TextView
-    lateinit var dateTime: TextView
-
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.fragment_all_tasks, container, false)
-
-        dayOfWeek = view.findViewById(R.id.day_of_week)
-        dateTime = view.findViewById(R.id.date_main)
-
-        dayOfWeek.text = DateConverter().getCurrentDay()
-        dateTime.text = DateConverter().getDate()
-
-        recyclerView = view.findViewById(R.id.all_tasks_recycler_view)
+        view.day_of_week.text = DateConverter().getCurrentDay()
+        view.date_main.text = DateConverter().getDate()
 
         viewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
-
-        recyclerView.apply {
+        view.all_tasks_recycler_view.apply {
             layoutManager = GridLayoutManager(activity,1)
             recyclerViewAllAdapter = TaskRecyclerAllAdapter(requireActivity(),viewModel)
             adapter = recyclerViewAllAdapter

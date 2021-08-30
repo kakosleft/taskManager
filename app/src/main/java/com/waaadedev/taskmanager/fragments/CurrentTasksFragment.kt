@@ -16,10 +16,10 @@ import com.waaadedev.taskmanager.viewModel.MainActivityViewModel
 import com.waaadedev.taskmanager.R
 import com.waaadedev.taskmanager.adapters.TaskRecyclerCurrentAdapter
 import com.waaadedev.taskmanager.data.Task
+import kotlinx.android.synthetic.main.fragment_current_tasks.view.*
 
 class CurrentTasksFragment : Fragment(), TaskRecyclerCurrentAdapter.CurrentItemOnClickListener {
 
-    private lateinit var recyclerView: RecyclerView
     lateinit var recyclerViewCurrentAdapter: TaskRecyclerCurrentAdapter
     lateinit var viewModel: MainActivityViewModel
 
@@ -29,9 +29,7 @@ class CurrentTasksFragment : Fragment(), TaskRecyclerCurrentAdapter.CurrentItemO
     ): View? {
         val view = inflater.inflate(R.layout.fragment_current_tasks, container, false)
 
-        recyclerView = view.findViewById(R.id.current_tasks_recycler_view)
-
-        recyclerView.apply {
+        view.current_tasks_recycler_view.apply {
             layoutManager = LinearLayoutManager(activity)
             recyclerViewCurrentAdapter = TaskRecyclerCurrentAdapter(this@CurrentTasksFragment)
             adapter = recyclerViewCurrentAdapter
@@ -64,7 +62,6 @@ class CurrentTasksFragment : Fragment(), TaskRecyclerCurrentAdapter.CurrentItemO
 
     override fun onTaskCompliteListener(task: Task) {
         task.isDone = !task.isDone
-        Log.i("----------", task.toString())
         viewModel.updateTask(task)
     }
 }

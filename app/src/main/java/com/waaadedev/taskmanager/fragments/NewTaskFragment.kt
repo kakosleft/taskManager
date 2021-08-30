@@ -18,41 +18,23 @@ import com.waaadedev.taskmanager.R
 import com.waaadedev.taskmanager.data.Task
 import com.waaadedev.taskmanager.fragments.dialogs.DatePickerFragment
 import com.waaadedev.taskmanager.fragments.dialogs.TimePickerFragment
+import com.waaadedev.taskmanager.util.DateConverter
+import kotlinx.android.synthetic.main.fragment_new_task.view.*
 import java.util.*
 
-
 class NewTaskFragment : Fragment() {
-
-    lateinit var createTask: Button
-    lateinit var back: ImageButton
-    lateinit var timeButton: Button
-    lateinit var dateButton: Button
-    lateinit var title: EditText
-
 
     lateinit var time: Calendar
     lateinit var date: Calendar
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_new_task, container, false)
-        title = view.findViewById(R.id.task_title_edit_text)
-        timeButton = view.findViewById(R.id.time_button)
-        back = view.findViewById(R.id.button_back)
-        dateButton = view.findViewById(R.id.date_button)
-        createTask = view.findViewById(R.id.create_task)
-
-        back.setOnClickListener{
+        view.button_back.setOnClickListener{
             goBack()
         }
 
-        createTask.setOnClickListener {
+        view.create_task.setOnClickListener {
             val viewModel= ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
             try {
                 val taskTime = GregorianCalendar(
@@ -63,7 +45,7 @@ class NewTaskFragment : Fragment() {
                     time.get(Calendar.MINUTE)
                 )
                 var newTask= Task(
-                    description = title.text.toString(),
+                    description = view.task_title_edit_text.text.toString(),
                     date = taskTime.timeInMillis,
                     text = "234234",
                     id = 0,
@@ -81,15 +63,17 @@ class NewTaskFragment : Fragment() {
             ViewModelProviders.of(requireActivity()).get(DialogsDataViewModel::class.java)
         model.getDate.observe(viewLifecycleOwner) {
             date = it
+            view.date_button.text = DateConverter().getDate(date.timeInMillis)
         }
         model.getTime.observe(viewLifecycleOwner) {
             time = it
+            view.time_button.text = DateConverter().getTime(time.timeInMillis)
         }
-        timeButton.setOnClickListener {
+        view.time_button.setOnClickListener {
             TimePickerFragment().show(activity?.supportFragmentManager!!, "timePicker")
         }
 
-        dateButton.setOnClickListener {
+        view.date_button.setOnClickListener {
             DatePickerFragment().show(activity?.supportFragmentManager!!, "datePicker")
         }
         return view

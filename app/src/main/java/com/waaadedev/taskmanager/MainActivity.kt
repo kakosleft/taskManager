@@ -64,16 +64,16 @@ class MainActivity : AppCompatActivity() {
             MenuItemDescriptor.Builder(
                 this,
                 R.id.all_tasks,
-                R.drawable.house,
+                R.drawable.icon_menu,
                 R.string.all,
-                ContextCompat.getColor(this, R.color.blue)
+                ContextCompat.getColor(this, R.color.purple_200)
             ).build()
         )
         menu.add(
             MenuItemDescriptor.Builder(
                 this,
                 R.id.current_tasks,
-                R.drawable.house,
+                R.drawable.icon_menu,
                 R.string.in_process,
                 ContextCompat.getColor(this, R.color.red)
             ).build()
@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity() {
             MenuItemDescriptor.Builder(
                 this,
                 R.id.main_menu_settings,
-                R.drawable.house,
+                R.drawable.icon_menu,
                 R.string.done,
                 ContextCompat.getColor(this, R.color.green)
             ).build()
