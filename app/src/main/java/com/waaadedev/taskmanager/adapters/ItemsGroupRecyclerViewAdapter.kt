@@ -1,6 +1,5 @@
 package com.waaadedev.taskmanager.adapters
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +29,6 @@ class ItemsGroupRecyclerViewAdapter(private val listener: RowClickListener) :
     }
 
     override fun onBindViewHolder(holder: ItemsGroupRecyclerViewAdapter.ViewHolder, position: Int) {
-
         holder.bind(items[position])
     }
 
@@ -43,14 +41,11 @@ class ItemsGroupRecyclerViewAdapter(private val listener: RowClickListener) :
         val date = itemView.findViewById<TextView>(R.id.item_task_date)
         val isDone = itemView.findViewById<CheckBox>(R.id.item_task_check_box)
 
-
-
         fun bind(task: Task) {
             title.text = task.description
             time.text = DateConverter().getTime(task.date)
             date.text = DateConverter().getDate(task.date)
             isDone.isChecked = task.isDone
-
 
             itemView.setOnLongClickListener {
                 listener.onItemClickListener(task)
@@ -60,7 +55,6 @@ class ItemsGroupRecyclerViewAdapter(private val listener: RowClickListener) :
             itemView.setOnClickListener {
                 listener.onTaskCompliteListener(task)
             }
-
         }
     }
 

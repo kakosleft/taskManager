@@ -8,15 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
-import com.waaadedev.taskmanager.MainActivityViewModel
+import com.waaadedev.taskmanager.viewModel.MainActivityViewModel
 import com.waaadedev.taskmanager.R
-import com.waaadedev.taskmanager.adapters.TaskRecyclerAllAdapter
 import com.waaadedev.taskmanager.adapters.TaskRecyclerCurrentAdapter
 import com.waaadedev.taskmanager.data.Task
 

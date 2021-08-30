@@ -8,13 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.*
-import com.waaadedev.taskmanager.MainActivityViewModel
+import com.waaadedev.taskmanager.viewModel.MainActivityViewModel
 import com.waaadedev.taskmanager.R
 import com.waaadedev.taskmanager.adapters.TaskRecyclerAllAdapter
 import com.waaadedev.taskmanager.data.Task
 import com.waaadedev.taskmanager.data.TasksParrent
 
-class AllTasksFragment : Fragment() {
+class AllTasksFragment : Fragment(){
 
     private lateinit var recyclerView: RecyclerView
     lateinit var recyclerViewAllAdapter: TaskRecyclerAllAdapter
@@ -30,14 +30,14 @@ class AllTasksFragment : Fragment() {
 
         recyclerView = view.findViewById(R.id.all_tasks_recycler_view)
 
+        viewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
 
         recyclerView.apply {
             layoutManager = GridLayoutManager(activity,1)
-            recyclerViewAllAdapter = TaskRecyclerAllAdapter(activity)
+            recyclerViewAllAdapter = TaskRecyclerAllAdapter(requireActivity(),viewModel)
             adapter = recyclerViewAllAdapter
         }
 
-        viewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
         viewModel.getAllTasksObservers().observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             Log.i("____#_____",preparationData(it).toString())
             recyclerViewAllAdapter.setListData(preparationData(it))
@@ -67,6 +67,8 @@ class AllTasksFragment : Fragment() {
         val currentTasks = ArrayList<Task>()
         val doneTasks = ArrayList<Task>()
     }
+
+
 
 
 }

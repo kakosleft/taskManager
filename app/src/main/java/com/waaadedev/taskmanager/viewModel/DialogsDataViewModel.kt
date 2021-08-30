@@ -1,4 +1,4 @@
-package com.waaadedev.taskmanager
+package com.waaadedev.taskmanager.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

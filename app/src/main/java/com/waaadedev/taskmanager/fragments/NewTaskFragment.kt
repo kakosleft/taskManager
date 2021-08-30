@@ -8,12 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentContainerView
 import androidx.lifecycle.ViewModelProviders
-import com.waaadedev.taskmanager.DialogsDataViewModel
+import com.waaadedev.taskmanager.viewModel.DialogsDataViewModel
 import com.waaadedev.taskmanager.MainActivity
-import com.waaadedev.taskmanager.MainActivityViewModel
+import com.waaadedev.taskmanager.viewModel.MainActivityViewModel
 import com.waaadedev.taskmanager.R
 import com.waaadedev.taskmanager.data.Task
 import com.waaadedev.taskmanager.fragments.dialogs.DatePickerFragment
@@ -24,6 +24,7 @@ import java.util.*
 class NewTaskFragment : Fragment() {
 
     lateinit var createTask: Button
+    lateinit var back: ImageButton
     lateinit var timeButton: Button
     lateinit var dateButton: Button
     lateinit var title: EditText
@@ -43,8 +44,13 @@ class NewTaskFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_new_task, container, false)
         title = view.findViewById(R.id.task_title_edit_text)
         timeButton = view.findViewById(R.id.time_button)
+        back = view.findViewById(R.id.button_back)
         dateButton = view.findViewById(R.id.date_button)
         createTask = view.findViewById(R.id.create_task)
+
+        back.setOnClickListener{
+            goBack()
+        }
 
         createTask.setOnClickListener {
             val viewModel= ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
@@ -65,10 +71,7 @@ class NewTaskFragment : Fragment() {
                 )
 
                 viewModel.insertTask(newTask)
-
-                val intent = Intent(requireActivity(), MainActivity::class.java)
-                startActivity(intent)
-
+                goBack()
             }catch (e: Exception){
                 Log.i("__",e.toString())
             }
@@ -90,6 +93,11 @@ class NewTaskFragment : Fragment() {
             DatePickerFragment().show(activity?.supportFragmentManager!!, "datePicker")
         }
         return view
+    }
+
+    fun goBack(){
+        val intent = Intent(requireActivity(), MainActivity::class.java)
+        startActivity(intent)
     }
 
 }

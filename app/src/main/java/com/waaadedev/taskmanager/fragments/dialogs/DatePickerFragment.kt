@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProviders
-import com.waaadedev.taskmanager.DialogsDataViewModel
+import com.waaadedev.taskmanager.viewModel.DialogsDataViewModel
 import java.util.*
 
 class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
